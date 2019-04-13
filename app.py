@@ -185,6 +185,11 @@ def register():
         flash("User Created", "success")
     return redirect(url_for("login"))
 
+
+
+@app.route('/layout')
+def layout():
+    return render_template('layout.html')
 app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=80)
