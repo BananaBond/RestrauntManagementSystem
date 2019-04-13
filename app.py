@@ -65,8 +65,10 @@ class ReservationForm(Form):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
+    if(session.get("usertype")!="admin"):
+        return render_template('index.html')
+    if(session.get("usertype")=="admin"):
+        return render_template('admin_index.html')
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -129,9 +131,15 @@ def elements():
 @app.route('/admin_reservation')
 @admin_required
 def admin_reservation():
-    flash("Welcome Admin","success")
+
     data=query_db("select firstname,lastname,seats,time,email from reservations")
     return render_template('admin_reservation.html',alldata=data)
+
+@app.route('/admin_orders')
+@admin_required
+def admin_orders():
+    data = query_db("select orderid,customername,item from orders")
+    return render_template('orders.html',alldata=data)
 
 @app.route('/login',methods=['POST','GET'])
 def login():
@@ -184,6 +192,11 @@ def register():
         ))
         flash("User Created", "success")
     return redirect(url_for("login"))
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("Logout success", "success")
+    return redirect(url_for('login'))
 
 
 
