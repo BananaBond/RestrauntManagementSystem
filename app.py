@@ -74,9 +74,14 @@ def about():
     return render_template('about.html')
 
 @app.route('/menu')
-
 def menu():
-    return render_template('menu.html')
+    data = query_db("select name,category,description,option1,option2,option3,price1,price2,price3 from menu")
+    return render_template('menu.html',alldata=data)
+
+
+
+
+
 @app.route('/team')
 def team():
     return render_template('team.html')
