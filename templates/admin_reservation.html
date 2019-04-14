@@ -19,36 +19,63 @@
         </div>
     </section>
     <!-- End banner Area -->
-
-
+    <section class="menu-list-area section-gap">
+        <div class="container">
+    <div id="pills-tabContent" class="tab-content absolute">
+        {%for data in alldata%}
+                    <div class="tab-pane fade show active "  role="tabpanel" >
+                        <div class="single-menu-list row justify-content-between align-items-center">
+                            <div class="col-lg-8">
+                                <a href="#"><h4>{{data[0]}} {%if data[1] is not none%}{{data[1]}}{%endif%}</h4></a>
+                                <p>
+                                    {{data[4]}}
+                                </p>
+                            </div>
+                            <div class="col-lg-4 flex-row d-flex price-size ">
+                                <div class="s-price col">
+                                        
+                                    <h4>Seats for {{data[2]}}</h4>
+                                    
+                                    <a>{{data[3]}}</a>
+                                    
+                                </div>
+                                																	
+                            </div>
+                        </div>	
+                                                                                                            
+                    </div>
+                    {%endfor%}
+        
+        </div>
+    </div>
+</section>
 
     <!-- Start Align Area -->
-    <section class="menu-list-area section-gap">
+   <!-- <section class="menu-list-area section-gap">
         <div class="container">
             <div id="pills-tabContent" class="tab-content absolute">
                 <div class="tab-pane fade show active" id="pizza" role="tabpanel" aria-labelledby="pizza-tab">
                     {% for data in alldata %}
                     <div class="single-menu-list row justify-content-between align-items-center">
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <a href="#">
                                 <h4>{{ data[0] }} {{data[1]}}</h4>
                             </a>
 
                         </div>
-                        <div class="col-lg-3 flex-row d-flex price-size">
+                        <div class="col-lg-4 flex-row d-flex price-size">
 
                             <div class="s-price col">
-                                <h4>{{ data[2] }}</h4>
+                                <h4>Seats for {{ data[2] }}</h4>
                                 <span>{{ data[3] }}</span>
                             </div>
                         </div>
-                        <p>{{ data[4] }}
-                        </p>
+                        <a>     {{ data[4] }}</a>
                     </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- End Align Area -->
 {%endblock%}

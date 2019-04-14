@@ -121,7 +121,7 @@ def reservation():
         submission['notes'],
         submission['seats']
         ))
-    flash("Reservation created","success")
+    flash(" Reservation created ","success")
     return render_template('reservation.html')
 
 
@@ -157,16 +157,16 @@ def login():
 
         passdatabase = query_db("select password from users where username = ?", (username,))
         if passdatabase == "":
-            flash("User does not exist", "danger")
+            flash(" User does not exist ", "danger")
             return render_template("login.html")
         usertype=query_db("select usertype from users where username = ?", (username,))
         if (sha.verify(password,passdatabase[0][0])):
-            flash("Login Successful","success")
+            flash(" Login Successful ","success")
             session["username"] = username
             session["usertype"]=usertype[0][0]
             return redirect(url_for('index'))
         else:
-            flash("Incorrect Password", "danger")
+            flash( " Incorrect Password ", "danger")
             return render_template("login.html")
 
 @app.route('/register',methods=['POST','GET'])
@@ -195,12 +195,12 @@ def register():
             password,
             submission["usertype"]
         ))
-        flash("User Created", "success")
+        flash(" User Created ", "success")
     return redirect(url_for("login"))
 @app.route('/logout')
 def logout():
     session.clear()
-    flash("Logout success", "success")
+    flash(" Logout successful ", "success")
     return redirect(url_for('login'))
 
 

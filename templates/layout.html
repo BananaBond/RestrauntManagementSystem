@@ -52,8 +52,10 @@
                         <ul class=flashes>
                             {% for message in messages %}
                            
-                            <a class="btns" href="tel:+953 012 3654 896">{{messages}}</a>
-
+                            <!--<a class="btns" href="tel:+953 012 3654 896">{{messages}}</a>-->
+                            <div class="alert alert-success">
+                                <strong>Success!</strong>{{ message }}
+                            </div>
 
                              
                             {% endfor %}

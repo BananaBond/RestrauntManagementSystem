@@ -35,7 +35,7 @@
 								</div>
 								<div class="mt-10">
 									<input type="text" name="lastname" placeholder="Last Name"
-										onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+										onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" 
 										class="single-input">
 								</div>
 
@@ -51,8 +51,8 @@
 
 								</div>
 								<div class="form-select" id="default-select" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Time'">
-									<select name="time">
+									onblur="this.placeholder = 'Time'" >
+									<select name="time" required>
 										<option value=" " selected disabled hidden>Time</option>
 										<option value="2:00pm">2:00pm</option>
 										<option value="3:30pm">3:30pm</option>
@@ -62,8 +62,8 @@
 									</select>
 								</div>
 								<div class="form-select" id="default-select" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'TableFor'">
-									<select name='seats'>
+									onblur="this.placeholder = 'TableFor'" aria-required="false">
+									<select name='seats' required>
 										<option value=" " selected disabled hidden>Table For</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -81,7 +81,7 @@
 								<div class="input-group-icon mt-10">
 									<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
 									<div class="form-select" id="default-select"">
-										<select name='city'>
+										<select name='city' required> 
 										<option value=" " selected disabled hidden>City</option>
 										<option value="Delhi">Delhi</option>
 										<option value="Patiala">Patiala</option>
@@ -108,11 +108,11 @@
 									<p><br /></p>
 
 								</div>
-								<div class="switch-wrap d-flex justify-content-between">
+								<div class="switch-wrap d-flex justify-content-between" >
 
 									<p>I have read the terms and conditions</p>
 									<div class="primary-checkbox">
-										<input type="checkbox" id="default-checkbox">
+										<input type="checkbox" id="default-checkbox" required>
 										<label for="default-checkbox"></label>
 									</div>
 								</div>
