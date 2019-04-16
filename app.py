@@ -93,7 +93,8 @@ def reservation():
 #     form=ReservationForm(request.form)
 #     if query_db("select firstname from Reservations where firstname = ?",( form.firstname.data,)):
 #         if(query_db("select lastname from Reservations where lastname = ?",( form.lastname.data,))):
-#             flash("User already taken","danger")
+#
+#             ("User already taken","danger")
 #         return render_template("reservation.html",form=form)
 #     if request.method == 'POST' and form.validate():
 #         password = sha.encrypt(form.password.data)
@@ -158,12 +159,13 @@ def login():
         password = request.form["password"]
 
         passdatabase = query_db("select password from users where username = ?", (username,))
-        if passdatabase == "":
+        if passdatabase == []:
             flash(" User does not exist ", "danger")
             return render_template("login.html")
         usertype=query_db("select usertype from users where username = ?", (username,))
-        if (sha.verify(password,passdatabase[0][0])):
-            flash(" Login Successful ","success")
+
+        if  (sha.verify(password,passdatabase[0][0])):
+            flash(" Login successful ","success")
             session["username"] = username
             session["usertype"]=usertype[0][0]
             return redirect(url_for('index'))
