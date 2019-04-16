@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app.py" line="99" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.py" line="100" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afa43ecd-fd7d-48e7-a8b3-3ac630009acc" name="Default Changelist" comment="">
@@ -12,7 +12,8 @@
       <change beforePath="$PROJECT_DIR$/templates/admin_reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_reservation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/team.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1725">
-              <caret line="123" column="32" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+            <state relative-caret-position="606">
+              <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -118,17 +119,18 @@
       <workItem from="1555182937290" duration="4385000" />
       <workItem from="1555232858175" duration="593000" />
       <workItem from="1555258835830" duration="1311000" />
+      <workItem from="1555376603308" duration="2829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28589000" />
+    <option name="totallyTimeSpent" value="31418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06876332" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.069296375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -159,8 +161,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1725">
-          <caret line="123" column="32" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+        <state relative-caret-position="606">
+          <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

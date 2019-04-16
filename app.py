@@ -17,6 +17,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get("username") is None:
+            flash(" Please login ","danger")
             return redirect(url_for("login", next=request.url))
         return f(*args, **kwargs)
 
@@ -203,7 +204,21 @@ def logout():
     flash(" Logout successful ", "success")
     return redirect(url_for('login'))
 
+@app.route('/addtocart/<name>')
+@login_required
+def addtocart(name):
+    itemname=name
+    customername=session["username"]
+    execute_db("insert into orders values(0,?,?)", (
+       customername, itemname
+    ))
+    flash(" Added to cart "+name,"success")
+    return redirect(url_for('menu'))
 
+@app.route('/employee')
+def employee():
+
+    return render_template('team.html')
 
 @app.route('/layout')
 def layout():
