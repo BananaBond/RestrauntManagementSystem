@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app.py" line="100" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.py" line="101" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afa43ecd-fd7d-48e7-a8b3-3ac630009acc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/MainDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_reservation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/team.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+            <state relative-caret-position="790">
+              <caret line="230" column="41" lean-forward="true" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -119,12 +113,12 @@
       <workItem from="1555182937290" duration="4385000" />
       <workItem from="1555232858175" duration="593000" />
       <workItem from="1555258835830" duration="1311000" />
-      <workItem from="1555376603308" duration="2829000" />
+      <workItem from="1555376603308" duration="4242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31418000" />
+    <option name="totallyTimeSpent" value="32831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -161,8 +155,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+        <state relative-caret-position="790">
+          <caret line="230" column="41" lean-forward="true" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
