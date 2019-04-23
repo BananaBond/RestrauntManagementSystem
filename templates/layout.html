@@ -64,6 +64,9 @@
                         {% endif %}
                         {% endwith %}
                     </div>
+                    <div class="justify-content-center align-items-center">
+                            <div class="banner-content col-lg-10 col-md-12 justify-content-center">
+                               {%if user is not none%} <h6 class="text-uppercase">welcome {{user}}</h6>{%endif%}
                 </div>
             </div>
         </div>
@@ -79,8 +82,11 @@
 
                         <li><a href="{{ url_for('reservation') }}">Reserve A Table</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        
+                        {%if user is not none%}<li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        {%else%}<li><a href="{{ url_for('login') }}">Login</a></li>{%endif%}
                         <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <li><a href="{{ url_for('cart') }}">Cart</a></li>
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>

@@ -19,7 +19,7 @@ def login_required(f):
         if session.get("username") is None:
             flash(" Please login ",'danger')
 
-            return redirect(url_for("login", next=request.url))
+            return redirect(url_for("login",user=session.get("username"), next=request.url))
         return f(*args, **kwargs)
 
     return decorated_function
@@ -27,7 +27,7 @@ def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if (session.get("usertype") !="admin"):
-            return redirect(url_for("index", next=request.url))
+            return redirect(url_for("index",user=session.get("username"), next=request.url))
         return f(*args, **kwargs)
 
     return decorated_function
@@ -68,17 +68,17 @@ class ReservationForm(Form):
 @app.route('/')
 def index():
     if(session.get("usertype")!="admin"):
-        return render_template('index.html')
+        return render_template('index.html',user=session.get("username"),)
     if(session.get("usertype")=="admin"):
-        return render_template('admin_index.html')
+        return render_template('admin_index.html',user=session.get("username"))
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html',user=session.get("username"))
 
 @app.route('/menu')
 def menu():
     data = query_db("select name,category,description,option1,option2,option3,price1,price2,price3 from menu")
-    return render_template('menu.html',alldata=data)
+    return render_template('menu.html',user=session.get("username"),alldata=data)
 
 
 
@@ -86,7 +86,7 @@ def menu():
 
 @app.route('/team')
 def team():
-    return render_template('team.html')
+    return render_template('team.html',user=session.get("username"))
 
 @app.route('/reservation',methods=['POST','GET'])
 def reservation():
@@ -102,7 +102,7 @@ def reservation():
 #         flash('Thanks for your reservation')
 #         return redirect(url_for('index'))
     if request.method=="GET":
-        return render_template('reservation.html')
+        return render_template('reservation.html',user=session.get("username"))
     else:
         submission ={}
         submission["firstname"]=request.form["firstname"]
@@ -125,34 +125,41 @@ def reservation():
         submission['seats']
         ))
     flash(" Reservation created ","success")
-    return render_template('reservation.html')
+    return render_template('reservation.html',user=session.get("username"))
 
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    return render_template('contact.html',user=session.get("username"))
 
 @app.route('/elements')
 def elements():
     return render_template('elements.html')
+
+@app.route('/cart')
+@login_required
+def cart():
+    data = query_db("select customername,item from cart")
+    return render_template('/cart.html',user=session.get("username"),alldata=data,count=0)
+
 
 @app.route('/admin_reservation')
 @admin_required
 def admin_reservation():
 
     data=query_db("select firstname,lastname,seats,time,email from reservations")
-    return render_template('admin_reservation.html',alldata=data)
+    return render_template('admin_reservation.html',user=session.get("username"),alldata=data)
 
 @app.route('/admin_orders')
 @admin_required
 def admin_orders():
     data = query_db("select orderid,customername,item from orders")
-    return render_template('orders.html',alldata=data)
+    return render_template('orders.html',user=session.get("username"),alldata=data)
 
 @app.route('/login',methods=['POST','GET'])
 def login():
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("login.html",user=session.get("username"))
     else:
         error = None
         username = request.form["username"]
@@ -161,7 +168,7 @@ def login():
         passdatabase = query_db("select password from users where username = ?", (username,))
         if passdatabase == []:
             flash(" User does not exist ", "danger")
-            return render_template("login.html")
+            return render_template("login.html",user=session.get("username"))
         usertype=query_db("select usertype from users where username = ?", (username,))
 
         if  (sha.verify(password,passdatabase[0][0])):
@@ -171,12 +178,12 @@ def login():
             return redirect(url_for('index'))
         else:
             flash( " Incorrect Password ", "danger")
-            return render_template("login.html")
+            return render_template("login.html",user=session.get("username"))
 
 @app.route('/register',methods=['POST','GET'])
 def register():
     if request.method=="GET":
-        return render_template('register.html')
+        return render_template('register.html',user=session.get("username"))
     else:
         submission = {}
         submission["username"] = request.form["username"]
@@ -186,11 +193,11 @@ def register():
         submission["usertype"]=request.form["usertype"]
         if submission["password"] != submission["conf_pass"]:
             flash("Passwords don't match", "danger")
-            return render_template("register.html")
+            return render_template("register.html",user=session.get("username"))
 
         if query_db("select username from users where username = ?", (submission["username"],)) != []:
             flash("User already taken", "danger")
-            return render_template("register.html")
+            return render_template("register.html",user=session.get("username"))
 
         password = sha.encrypt(submission["password"])
         execute_db("insert into users values(?,?,?)", (
@@ -212,25 +219,47 @@ def logout():
 def addtocart(name,size):
     itemname=name
     itemsize=size
-    code=itemname+itemsize
+    code=itemname+" "+itemsize
 
 
     customername=session["username"]
-    execute_db("insert into orders values(1,?,?)", (
+    execute_db("insert into cart values(?,?)", (
        customername, code
 
     ))
     flash(" Added to cart "+code,"success")
     return redirect(url_for('menu'))
+@app.route('/place_order')
+@login_required
+def place_order():
+    itemlist=""
+    curretuser=session.get("username")
+    items=query_db("select item from cart where customername=?",(curretuser,))
+    for i in items:
+
+        itemlist+=i[0]+", "
+
+    execute_db("insert into orders values(1,?,?)",(curretuser,itemlist))
+    flash("Order placed ","success")
+    return redirect(url_for('index'))
+
 
 @app.route('/employee')
 def employee():
 
-    return render_template('team.html')
+    return render_template('team.html',user=session.get("username"))
 
 @app.route('/layout')
 def layout():
     return render_template('layout.html')
+@app.route("/profile")
+@login_required
+def profile():
+    currentuser=session.get("username")
+    data=query_db("select username from users where username = ?",(currentuser,))
+
+    return render_template('profile.html',data=data)
+
 app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=80)
