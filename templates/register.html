@@ -26,13 +26,43 @@
                     <div class="col-lg-8 col-md-8">
                         <h3 class="mb-30">Enter your details</h3>
                         <form action="{{ url_for('register') }}" method="POST">
+                                <div class="mt-10">
+                                        <input type="text" name="email" placeholder="Email"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required
+                                            class="single-input">
+        
+        
+                                    </div>
                             <div class="mt-10">
-                                <input type="text" name="username" placeholder="Username"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required
+                                <input type="text" name="firstname" placeholder="First name"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstname'" required
                                     class="single-input">
 
 
                             </div>
+                            <div class="mt-10">
+                                    <input type="text" name="lastname" placeholder="Last name"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastname'" required
+                                        class="single-input">
+    
+    
+                                </div>
+                            
+                                <div class="mt-10">
+                                        <input type="text" name="contact" placeholder="Contact"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact'" required
+                                            class="single-input">
+        
+        
+                                    </div>
+                                <div class="mt-10">
+                                        <input type="text" name="address" placeholder="Address"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required
+                                            class="single-input">
+        
+        
+                                    </div>
+                                    
                             <div class="mt-10">
                                 <input type="text" name="password" placeholder="Password"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required

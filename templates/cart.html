@@ -23,9 +23,11 @@
 
 <section class="menu-list-area section-gap">
     <div class="container">
+            {% set datactr = 0 %}
         {% for data in alldata %}
         
-        <h3 class="text-heading">{%if count == 0 %}    {{data[0]}}'s Cart {%endif%}</h3>
+        <h3 class="text-heading">{%if loop.index == 1  %}  {{data[0]}}'s Cart {%endif%}</h3>
+        
         <div id="pills-tabContent" class="tab-content absolute">
             <div class="tab-pane fade show active" id="pizza" role="tabpanel" aria-labelledby="pizza-tab">
                 
@@ -36,6 +38,7 @@
                         </a>
 
                     </div>
+                    {% set datactr = 1 %}
                     <div class="col-lg-3 flex-row d-flex price-size">
 
                         <div class="s-price col">
@@ -49,7 +52,17 @@
                 {% endfor %}
             </div>
         </div>
+        {%if datactr == 0%}
         <a href="{{url_for('place_order')}}" class="genric-btn primary">Place Order</a>
+
+        {%else%}
+        <div class="container container-table">
+            <div class="row vertical-center-row">
+        <h3 class="text-heading"> Cart Empty</h3>
+        </div>
+        </div>
+        {%endif%}
+
     </div>
 </section>
 <!-- End Align Area -->

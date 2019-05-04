@@ -5,7 +5,7 @@ from hashlib import md5
 from functools import wraps
 from datetime import datetime
 from wtforms import Form, BooleanField, StringField, PasswordField, validators,TextAreaField,IntegerField
-
+import numpy as np
 
 app = Flask(__name__, static_url_path="", static_folder="static")
 
@@ -139,8 +139,11 @@ def elements():
 @app.route('/cart')
 @login_required
 def cart():
-    data = query_db("select customername,item from cart")
-    return render_template('/cart.html',user=session.get("username"),alldata=data,count=0)
+
+    data = query_db("select customername,item from cart where customername=?",(session["username"],))
+
+
+    return render_template('/cart.html',user=session.get("username"),alldata=data)
 
 
 @app.route('/admin_reservation')
@@ -186,8 +189,11 @@ def register():
         return render_template('register.html',user=session.get("username"))
     else:
         submission = {}
-        submission["username"] = request.form["username"]
-
+        submission["email"] = request.form["email"]
+        submission["firstname"]=request.form["firstname"]
+        submission["lastname"] = request.form["lastname"]
+        submission["address"] = request.form["address"]
+        submission["contact"]=request.form["contact"]
         submission["password"] = request.form["password"]
         submission["conf_pass"] = request.form["conf_pass"]
         submission["usertype"]=request.form["usertype"]
@@ -195,16 +201,28 @@ def register():
             flash("Passwords don't match", "danger")
             return render_template("register.html",user=session.get("username"))
 
-        if query_db("select username from users where username = ?", (submission["username"],)) != []:
-            flash("User already taken", "danger")
+        if query_db("select username from users where username = ?", (submission["email"],)) != []:
+            flash("Email already taken", "danger")
             return render_template("register.html",user=session.get("username"))
 
         password = sha.encrypt(submission["password"])
-        execute_db("insert into users values(?,?,?)", (
-            submission["username"],
+        uid=100000000*np.random.random()
+        uid=int(uid)
+
+        execute_db("insert into users values(?,?,?,?)", (
+            uid,
+            submission["email"],
 
             password,
             submission["usertype"]
+        ))
+        execute_db("insert into customers values(?,?,?,?,?,?)",(
+            uid,
+            submission["firstname"],
+            submission["lastname"],
+            submission["email"],
+            submission["contact"],
+            submission["address"]
         ))
         flash(" User Created ", "success")
     return redirect(url_for("login"))
@@ -223,6 +241,7 @@ def addtocart(name,size):
 
 
     customername=session["username"]
+    uid = query_db("select uid from users where username=?",(customername,))
     execute_db("insert into cart values(?,?)", (
        customername, code
 
@@ -232,6 +251,8 @@ def addtocart(name,size):
 @app.route('/place_order')
 @login_required
 def place_order():
+    oid = 100000000 * np.random.random()
+    oid = int(oid)
     itemlist=""
     curretuser=session.get("username")
     items=query_db("select item from cart where customername=?",(curretuser,))
@@ -239,8 +260,10 @@ def place_order():
 
         itemlist+=i[0]+", "
 
-    execute_db("insert into orders values(1,?,?)",(curretuser,itemlist))
+    execute_db("insert into orders values(?,?,?)",(oid,curretuser,itemlist))
     flash("Order placed ","success")
+
+    execute_db("delete from cart where customername=?",(curretuser,))
     return redirect(url_for('index'))
 
 

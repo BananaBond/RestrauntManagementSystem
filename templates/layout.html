@@ -47,50 +47,55 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-8 header-top-right no-padding">
 
-                       
+
                         {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
                         <ul class="flashes">
                             {% for category, message in messages %}
-                           
-                           
+
+
                             <div class="alert alert-{{category}}">
                                 <strong></strong>{{ message }}
                             </div>
 
-                             
+
                             {% endfor %}
                         </ul>
                         {% endif %}
                         {% endwith %}
                     </div>
                     <div class="justify-content-center align-items-center">
-                            <div class="banner-content col-lg-10 col-md-12 justify-content-center">
-                               {%if user is not none%} <h6 class="text-uppercase">welcome {{user}}</h6>{%endif%}
+                        <div class="banner-content col-lg-10 col-md-12 justify-content-center">
+                            
+                        </div>
+                    </div>
+                    <div class="container text-right">
+                            <div class="span12 text-right">
+                                    {%if user is not none%} <h6 class="text-uppercase text-white">welcome {{user}}</h6>{%endif%}
+                            </div>
+                        </div>
                 </div>
-            </div>
-        </div>
-        <div class="container main-menu">
-            <div class="row align-items-center justify-content-between d-flex">
-                <a href="{{ url_for('index') }}"><img src="img/logo.png" alt="" title="" /></a>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-active"><a href="{{ url_for('index') }}">Home</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                <div class="container main-menu">
+                    <div class="row align-items-center justify-content-between d-flex">
+                        <a href="{{ url_for('index') }}"><img src="img/logo.png" alt="" title="" /></a>
+                        <nav id="nav-menu-container">
+                            <ul class="nav-menu">
+                                <li class="menu-active"><a href="{{ url_for('index') }}">Home</a></li>
+                                <li><a href="{{ url_for('about') }}">About</a></li>
+                                <li><a href="{{ url_for('menu') }}">Menu</a></li>
 
 
-                        <li><a href="{{ url_for('reservation') }}">Reserve A Table</a></li>
-                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                        
-                        {%if user is not none%}<li><a href="{{ url_for('logout') }}">Logout</a></li>
-                        {%else%}<li><a href="{{ url_for('login') }}">Login</a></li>{%endif%}
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                    </ul>
-                </nav><!-- #nav-menu-container -->
-            </div>
-        </div>
+                                <li><a href="{{ url_for('reservation') }}">Reserve A Table</a></li>
+                                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+                                {%if user is not none%}<li><a href="{{ url_for('logout') }}">Logout</a></li>
+                                {%else%}<li><a href="{{ url_for('login') }}">Login</a></li>
+                                <li><a href="{{ url_for('register') }}">Register</a></li>{%endif%}
+                                {%if user is not none%}<li><a href="{{ url_for('cart') }}">Cart</a></li>{%endif%}
+                            </ul>
+                        </nav><!-- #nav-menu-container -->
+                    </div>
+                </div>
     </header><!-- #header -->
 
 

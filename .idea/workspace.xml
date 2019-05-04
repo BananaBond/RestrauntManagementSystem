@@ -8,7 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/MainDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin_reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3657">
-              <caret line="77" column="16" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="16" />
+            <state relative-caret-position="130">
+              <caret line="142" column="78" selection-start-line="142" selection-start-column="78" selection-end-line="142" selection-end-column="78" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -43,6 +47,9 @@
     <findStrings>
       <find>flash</find>
       <find>sessio</find>
+      <find>random</find>
+      <find>cart</find>
+      <find>else</find>
     </findStrings>
     <replaceStrings>
       <replace>success</replace>
@@ -125,17 +132,19 @@
       <workItem from="1555258835830" duration="1311000" />
       <workItem from="1555376603308" duration="6347000" />
       <workItem from="1555549271259" duration="5859000" />
+      <workItem from="1556307870626" duration="1238000" />
+      <workItem from="1556987847128" duration="4478000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40795000" />
+    <option name="totallyTimeSpent" value="46511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06982943" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07089552" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -166,8 +175,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3657">
-          <caret line="77" column="16" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="16" />
+        <state relative-caret-position="130">
+          <caret line="142" column="78" selection-start-line="142" selection-start-column="78" selection-end-line="142" selection-end-column="78" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
