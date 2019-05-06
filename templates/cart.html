@@ -52,7 +52,7 @@
                 {% endfor %}
             </div>
         </div>
-        {%if datactr == 0%}
+        {%if alldata|length!=0%}
         <a href="{{url_for('place_order')}}" class="genric-btn primary">Place Order</a>
 
         {%else%}

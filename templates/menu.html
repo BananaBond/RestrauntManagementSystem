@@ -59,8 +59,8 @@
 									<div class="s-price col">
 											{%if data[6] is not none %}
 										<h4>{{data[3]}}</h4>
-										
-										<a href="{{url_for('addtocart',name=data[0],size=data[3])}}" class="genric-btn primary-border small">${{data[6]}}</a>
+										{%set op1=1%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[3],option=op1)}}" class="genric-btn primary-border small">${{data[6]}}</a>
 										{%else%}
 										<a></a>
 										{%endif%}
@@ -68,8 +68,8 @@
 									<div class="s-price col">
 										{%if data[7] is not none %}
 										<h4>{{data[4]}}</h4>
-										
-										<a href="{{url_for('addtocart',name=data[0],size=data[4])}}" class="genric-btn primary-border small">${{data[7]}}</a>
+										{%set op2=2%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[4],option=op2)}}" class="genric-btn primary-border small">${{data[7]}}</a>
 										{%else%}
 										<a></a>
 										{%endif%}
@@ -77,7 +77,8 @@
 									<div class="s-price col">
 										{%if data[8] is not none%}
 										<h4>{{data[5]}}</h4>
-										<a href="{{url_for('addtocart',name=data[0],size=data[5])}}" class="genric-btn primary-border small">${{data[8]}}</a>
+										{%set op3=3%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[5],option=op3)}}" class="genric-btn primary-border small">${{data[8]}}</a>
 										{%else%}
 										<a></a>
 										{%endif%}

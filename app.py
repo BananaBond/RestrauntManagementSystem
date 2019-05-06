@@ -156,7 +156,7 @@ def admin_reservation():
 @app.route('/admin_orders')
 @admin_required
 def admin_orders():
-    data = query_db("select orderid,customername,item from orders")
+    data = query_db("select orderid,customername,item,amount from orders")
     return render_template('orders.html',user=session.get("username"),alldata=data)
 
 @app.route('/login',methods=['POST','GET'])
@@ -182,6 +182,39 @@ def login():
         else:
             flash( " Incorrect Password ", "danger")
             return render_template("login.html",user=session.get("username"))
+@app.route('/admin_register',methods=['POST','GET'])
+def admin_register():
+    if request.method=="GET":
+        return render_template('admin_register.html',user=session.get("username"))
+    else:
+        submission = {}
+        submission["email"] = request.form["email"]
+
+        submission["password"] = request.form["password"]
+        submission["conf_pass"] = request.form["conf_pass"]
+        usertype="admin"
+        if submission["password"] != submission["conf_pass"]:
+            flash("Passwords don't match", "danger")
+            return render_template("admin_register.html",user=session.get("username"))
+
+        if query_db("select username from users where username = ?", (submission["email"],)) != []:
+            flash("Email already taken", "danger")
+            return render_template("admin_register.html",user=session.get("username"))
+
+        password = sha.encrypt(submission["password"])
+        uid=100000000*np.random.random()
+        uid=int(uid)
+
+        execute_db("insert into users values(?,?,?,?)", (
+            uid,
+            submission["email"],
+
+            password,
+            usertype
+        ))
+
+        flash(" User Created ", "success")
+    return redirect(url_for("login"))
 
 @app.route('/register',methods=['POST','GET'])
 def register():
@@ -196,7 +229,7 @@ def register():
         submission["contact"]=request.form["contact"]
         submission["password"] = request.form["password"]
         submission["conf_pass"] = request.form["conf_pass"]
-        submission["usertype"]=request.form["usertype"]
+        usertype="customer"
         if submission["password"] != submission["conf_pass"]:
             flash("Passwords don't match", "danger")
             return render_template("register.html",user=session.get("username"))
@@ -214,7 +247,7 @@ def register():
             submission["email"],
 
             password,
-            submission["usertype"]
+            usertype
         ))
         execute_db("insert into customers values(?,?,?,?,?,?)",(
             uid,
@@ -232,19 +265,19 @@ def logout():
     flash(" Logout successful ", "success")
     return redirect(url_for('login'))
 
-@app.route('/addtocart/<name>/<size>')
+@app.route('/addtocart/<name>/<size>/<option>')
 @login_required
-def addtocart(name,size):
+def addtocart(name,size,option):
     itemname=name
+    pid=query_db("select ProductID from menu where name=?",(itemname,))
     itemsize=size
     code=itemname+" "+itemsize
-
+    writeoption=option
 
     customername=session["username"]
     uid = query_db("select uid from users where username=?",(customername,))
-    execute_db("insert into cart values(?,?)", (
-       customername, code
-
+    execute_db("insert into cart values(?,?,?,?)", (
+       customername, code, pid[0][0], writeoption
     ))
     flash(" Added to cart "+code,"success")
     return redirect(url_for('menu'))
@@ -255,12 +288,24 @@ def place_order():
     oid = int(oid)
     itemlist=""
     curretuser=session.get("username")
-    items=query_db("select item from cart where customername=?",(curretuser,))
-    for i in items:
+    amount=0
+    lists=query_db("select item, pid,option from cart where customername=?",(curretuser,))
+
+    for i in lists:
+        curr_itemname=i[0]
+        curr_pid=i[1]
+        curr_option=i[2]
+        if curr_option==1:
+            cost = query_db("select price1 from menu where ProductID=? ", (curr_pid,))
+        elif curr_option==2:
+            cost = query_db("select price2 from menu where ProductID=? ", (curr_pid,))
+        elif curr_option==3:
+            cost = query_db("select price3 from menu where ProductID=? ", (curr_pid,))
+
 
         itemlist+=i[0]+", "
-
-    execute_db("insert into orders values(?,?,?)",(oid,curretuser,itemlist))
+        amount+=cost[0][0]
+    execute_db("insert into orders values(?,?,?,?)",(oid,curretuser,itemlist,amount))
     flash("Order placed ","success")
 
     execute_db("delete from cart where customername=?",(curretuser,))
