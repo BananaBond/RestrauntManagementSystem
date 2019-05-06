@@ -314,8 +314,8 @@ def place_order():
 
 @app.route('/employee')
 def employee():
-
-    return render_template('team.html',user=session.get("username"))
+    data = query_db("select name,designation from employees ")
+    return render_template('team.html',user=session.get("username"),alldata=data)
 
 @app.route('/layout')
 def layout():
