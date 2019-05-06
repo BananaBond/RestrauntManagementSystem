@@ -28,11 +28,13 @@
 								<p></p>
 							</div>
 						</div>
-					</div>						
+					</div>			
+							
 					<div class="row justify-content-center d-flex align-items-center">
+							{%for data in alldata%}		
 						<div class="col-lg-3 col-md-6 single-team">
 						    <div class="thumb">
-						        <img class="img-fluid" src="img/t1.jpg" alt="">
+						        <img class="img-fluid" src="{{data[2]}}" alt="">
 						        <div class="align-items-center justify-content-center d-flex">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>
@@ -40,10 +42,13 @@
 						        </div>
 						    </div>
 						    <div class="meta-text mt-30 text-center">
-							    <h4>{{alldata[0][0]}}</h4>
-							    <p>{{alldata[0][1]}}</p>									    	
+							    <h4>{{data[0]}}</h4>
+							    <p>{{data[1]}}</p>									    	
 						    </div>
 						</div>
+						{%endfor%}
+						<!--
+							
 						<div class="col-lg-3 col-md-6 single-team">
 						    <div class="thumb">
 						        <img class="img-fluid" src="img/t2.jpg" alt="">
@@ -85,9 +90,24 @@
 							    <h4>{{alldata[3][0]}}</h4>
 							    <p>{{alldata[3][1]}}</p>			    	
 						    </div>
-						</div>																									
+						</div>		
+						<div class="col-lg-3 col-md-6 single-team">
+								<div class="thumb">
+									<img class="img-fluid" src="img/t4.jpg" alt="">
+									<div class="align-items-center justify-content-center d-flex">
+										<a href="#"><i class="fa fa-facebook"></i></a>
+										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="#"><i class="fa fa-linkedin"></i></a>
+									</div>
+								</div>
+								<div class="meta-text mt-30 text-center">
+									<h4>{{alldata[3][0]}}</h4>
+									<p>{{alldata[3][1]}}</p>			    	
+								</div>
+							</div>																							
 				
 					</div>
+				-->
 				</div>	
 			</section>
 			<!-- End team Area -->			
